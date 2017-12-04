@@ -34,6 +34,17 @@ h1, h2, h3, h4, h5{
     font-size: 50px;
 }
 
+.input-submit{
+  width: 100px;
+  font-size: 12px;
+}
+
+.form-submit{
+  padding: 0;
+  margin: 0;
+  widows: 100px;
+}
+
 .description{
   width: 100%;
   text-align: right;

@@ -9,6 +9,25 @@
 </head>
 	<body class="body">
 		<h2>Welcome to your blog</h2>
+		{% if edit %}
+		
+		<h3>Editing post</h3>
+		<form class="form-border" action="/edit" method="POST">
+			<div class="title wrapper">
+				<input id="input-title" type="text" name="title" placeholder="Title" value="{{post.title}}" ></input>
+			</div>
+
+			<div class="title wrapper">
+				<textarea id="input-post" name="post">{{post.post}}</textarea>
+			</div>
+			<div  class="description wrapper">
+					<input type="hidden" name="id" value="{{post._id}}" />
+				<input type="submit" id="input-submit" value="SAVE"></input>
+			</div>
+		</form>
+
+		{% else %}
+		
 		<form class="form-border" action="/add_post" method="POST">
 			<div class="title wrapper">
 				<input id="input-title" type="text" name="title" placeholder="Title"></input>
@@ -21,14 +40,27 @@
 				<input type="submit" id="input-submit" value="POST"></input>
 			</div>
 		</form>
+		{% endif%}
 
 		{% for post in posts %}
 			<div class="blog-border">
 				<div class="title">
-					<div> {{ post.title }} </div>
+					<div> 
+						<h4>{{ post.title }}</h4>
+					</div>
 				</div>
 				<div class="post">
 					<div> {{ post.post }} </div>
+				</div>
+				<div>
+					<form action="/edit_post" method="POST" class="form-submit">
+						<input type="hidden" name="id" value="{{post._id}}" />
+						<input type="submit" class="input-submit" value="Edit"/>
+					</form>
+					<form action="/delete_post" method="POST" class="form-submit">
+						<input type="hidden" name="id" value="{{post._id}}" />
+						<input type="submit" class="input-submit" value="Delete"/>
+					</form>
 				</div>
 		  	</div>
 		{% endfor %}
