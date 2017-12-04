@@ -61,6 +61,74 @@
         }
       }
     },
+    "/edit": {
+      "post": {
+        "tags": [
+          "edit post"
+        ],
+        "summary": "Edit an existing post",
+        "description": "",
+        "operationId": "edit",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Post object that needs to be added to the Blog",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blogPostWithId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "[{'title':title,'post':post, _id:id}]"
+          }
+        }
+      }
+    },
+    "/delete": {
+      "post": {
+        "tags": [
+          "delete post"
+        ],
+        "summary": "Delete an existing post",
+        "description": "",
+        "operationId": "delete",
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Post object that needs to be added to the Blog",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/blogPostId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "[{'title':title,'post':post, _id:id}]"
+          }
+        }
+      }
+    },
     "/posts": {
       "get": {
         "tags": [
@@ -104,6 +172,43 @@
       },
       "xml": {
         "name": "Pet"
+      }
+    },
+    "blogPostWithId": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "post"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "5a24ea33b4dbbb0098cce955"
+        },
+        "title": {
+          "type": "string",
+          "example": "My First Blog Post"
+        },
+        "post": {
+          "type": "string",
+          "example": "Lorem Ipsum"
+        }
+      },
+      "xml": {
+        "name": "Pet"
+      }
+    },
+    "blogPostId": {
+      "type": "object",
+      "required":[
+        "id"
+      ],
+      "properties":{
+        "id":{
+          "type": "string",
+          "example": "5a24ea33b4dbbb0098cce955"
+        }
       }
     }
   }
